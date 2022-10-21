@@ -1,0 +1,27 @@
+name: tunify
+channels:
+    - defaults
+    - conda-forge
+dependencies:
+    - pip
+    - pytest
+    - jupyterlab
+    - flake8
+    - pandas
+    - numpy 
+    - scikit-learn
+    - altair
+    - matplotlib
+    - pip:
+        - nb_black
+        - openpyxl
+        - semantic_version
+        - sshtunnel
+        - pysdd
+        - graphviz
+        - bs4
+        - xmltodict
+        - lxml
+        - pysdd
+        - graphviz
+        - psycopg2
