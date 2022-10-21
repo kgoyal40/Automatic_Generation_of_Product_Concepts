@@ -43,7 +43,7 @@ def make_clusters(source_contexts=None, playlists=None, discard_threshold=0,
         for s in source_contexts:
             score = compare_source_with_learned_contexts(source_context=s, learned_context=context)
             print(score)
-            clustering_results_file = open(CLUSTERING_TARGET_DIR / "results_clustering_0906.txt", "a+")
+            clustering_results_file = open(CLUSTERING_TARGET_DIR / "results_clustering.txt", "a+")
             clustering_results_file.write(
                 '{}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}\n'.format(exp_num, j + 1, s,
                                                                           reliable_negative_method,
@@ -78,7 +78,7 @@ def pipeline(exp_num=None, source_contexts=None):
 
     for s in source_contexts:
         num_playlist_source_context = random.randint(MIN_PLAYLIST_PER_CONTEXT, MAX_PLAYLIST_PER_CONTEXT)
-        clustering_overview_file = open(CLUSTERING_TARGET_DIR / "overview_clustering_0906.txt", "a+")
+        clustering_overview_file = open(CLUSTERING_TARGET_DIR / "overview_clustering.txt", "a+")
         clustering_overview_file.write(
             '{}, {}, {}\n'.format(exp_num, s, num_playlist_source_context))
         clustering_overview_file.close()

@@ -1,2 +1,0 @@
-python -m scoop -vv -n 20 experiments-single-target-with-noise.py 
-python -m scoop -vv -n 20 experiments-clustering.py

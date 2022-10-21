@@ -13,6 +13,7 @@ context_overview = context_overview[context_overview['# songs'] > 100]
 context_overview.reset_index(inplace=True, drop=True)
 
 CONTEXT_TARGET_DIR = Path(".").absolute() / "learned_contexts"
+QUERY_LEARNING_TARGET_DIR = Path(".").absolute() / "query-learning"
 
 
 def get_query(context_id=None, positive_sample_size=20, discard_threshold=0, noise=0,
@@ -47,7 +48,7 @@ def get_query(context_id=None, positive_sample_size=20, discard_threshold=0, noi
     print([context_id, positive_sample_size, discard_threshold, noise, reliable_negative_method,
            len(learner.learned_queries['dt']), score])
 
-    output_file = open("results_query_learning_1006.txt", "a+")
+    output_file = open(QUERY_LEARNING_TARGET_DIR / "results_query_learning.txt", "a+")
     output_file.write(
         '{}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}\n'.format(context_id, positive_sample_size,
                                                                               discard_threshold,
