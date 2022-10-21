@@ -9,13 +9,13 @@ songs = pd.read_csv(ONEHOT_SONG_ID_FP)
 
 
 def get_filtered_clusters():
-    context_names = listdir(CONTEXT_DATA_DIR/ "/2020-10-01")
+    context_names = listdir(CONTEXT_DATA_DIR / "2020-10-01")
     context_names = [c.split('.')[0] for c in context_names if '.txt' in c]
     context_names_filtered = []
     for c in context_names:
         c_file = c + '.xml'
-        if path.isfile(CONTEXT_DATA_DIR / '/xml' / c_file):
-            with open(CONTEXT_DATA_DIR / '/xml' / c_file, "r") as file:
+        if path.isfile(CONTEXT_DATA_DIR / 'xml' / c_file):
+            with open(CONTEXT_DATA_DIR / 'xml' / c_file, "r") as file:
                 content = file.readlines()
                 content = "".join(content)
                 bs_content = bs(content, "html.parser")
@@ -43,8 +43,8 @@ def get_filtered_clusters():
 
 def get_subcontext_count(context_name):
     c_file = context_name + '.xml'
-    if path.isfile(CONTEXT_DATA_DIR / '/xml' / c_file):
-        with open(CONTEXT_DATA_DIR / '/xml' / c_file, "r") as file:
+    if path.isfile(CONTEXT_DATA_DIR / 'xml' / c_file):
+        with open(CONTEXT_DATA_DIR / 'xml' / c_file, "r") as file:
             content = file.readlines()
             content = "".join(content)
             bs_content = bs(content, "html.parser")
