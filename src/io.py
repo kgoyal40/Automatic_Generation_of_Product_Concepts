@@ -1,7 +1,7 @@
 from pathlib import Path
 
 # Main Directories
-ROOT = Path(__file__).absolute().parent.parent.parent
+ROOT = Path(__file__).absolute().parent.parent
 DATA_DIR = ROOT / "data"
 
 CONTEXT_DATA_DIR = DATA_DIR / "contexts"
