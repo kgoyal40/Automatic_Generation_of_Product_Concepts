@@ -9,17 +9,35 @@ songs = pd.read_csv(ONEHOT_SONG_ID_FP)
 
 
 def get_filtered_clusters():
-
+    context_names = listdir(CONTEXT_DATA_DIR / "2020-10-01")
+    context_names = [c.split('.')[0] for c in context_names if '.txt' in c]
     context_names_filtered = []
+    for c in context_names:
+        c_file = c + '.xml'
+        if path.isfile(CONTEXT_DATA_DIR / 'xml' / c_file):
+            with open(CONTEXT_DATA_DIR / 'xml' / c_file, "r") as file:
+                content = file.readlines()
+                content = "".join(content)
+                bs_content = bs(content, "html.parser")
+            if bs_content.find("selection-rule", {"field": 'Dancing Style'}) is None:
+                if bs_content.find("selection-rule", {"field": 'Instrument'}) is None:
+                    if bs_content.find("selection-rule", {"field": 'Origin'}) is None:
+                        if bs_content.find("selection-rule", {"field": 'Instrumental Accompaniment'}) is None:
+                            if bs_content.find("selection-rule", {"field": 'Compilation'}) is None:
+                                if bs_content.find("selection-rule", {"field": 'Music Trend'}) is None:
+                                    if bs_content.find("selection-rule", {"field": 'Continent'}) is None:
+                                        if bs_content.find("selection-rule", {"field": 'Performance Rights'}) is None:
+                                            if bs_content.find("selection-rule", {"field": 'Voice'}) is None:
+                                                context_names_filtered.append(c)
+
     all_contexts = {}
-    '''
-        the code of this part is not shared because of proprietary reasons.
-        The output of this function is:
-            context_names_filtered: a list of contexts that we considered.
-            all_contexts: a dictionary that contains the context_id as the key and the set of songs for each context
-            id as the item.
-            
-    '''
+    all_valid_songs = set(songs['song_id'].tolist())
+    for c in context_names_filtered:
+        c_file = c + '.xml.txt'
+        s = open(CONTEXT_DATA_DIR / "/2020-10-01" / c_file, "r").read().splitlines()
+        all_contexts[c.split('.')[0]] = set([int(i) for i in s]).intersection(all_valid_songs)
+    all_contexts.pop('0000008979', None)  # removing test context made by koen
+
     return context_names_filtered, all_contexts
 
 
@@ -65,6 +83,7 @@ def load_encoding_from_disk():
 def get_songs_from_query_song_query(query):
     if len(query) > 0:
         encoding = load_encoding_from_disk()
+        songs_filtered = songs.copy()
 
         all_filters = []
         for q in query:
