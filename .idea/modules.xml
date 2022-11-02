@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/Automatic Generation of Product Concepts.iml" filepath="$PROJECT_DIR$/.idea/Automatic Generation of Product Concepts.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/automatic-generation-of-product-concepts.iml" filepath="$PROJECT_DIR$/.idea/automatic-generation-of-product-concepts.iml" />
     </modules>
   </component>
 </project>
